@@ -1,0 +1,4 @@
+api_test:
+    prefix: /test
+    resource: 'api/test.yaml'
+    trailing_slash_on_root: false

@@ -1,0 +1,17 @@
+parameters:
+  git_dir: ../
+  bin_dir: vendor/bin
+  tasks:
+    phpspec:
+      format: dot
+    git_blacklist:
+      keywords:
+        - "die("
+        - "var_dump("
+        - "exit;"
+        - "ReflectionClass"
+    yamllint:
+      parse_custom_tags: true
+    phpcsfixer2:
+      config: ".php_cs.dist"
+      config_contains_finder: true

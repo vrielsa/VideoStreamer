@@ -1,0 +1,3 @@
+services:
+  App\Infrastructure\Controller\DefaultController:
+    public: true
