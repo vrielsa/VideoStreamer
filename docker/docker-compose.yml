@@ -12,6 +12,8 @@ services:
       - ../backend:/var/www
       - ../logs/symfony:/var/www/var/log
   nginx:
+    env_file:
+      - ./.env
     build:
       context: ./nginx
     volumes:
