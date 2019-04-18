@@ -18,7 +18,6 @@
 /backend/phpunit.xml
 /backend/.php_cs
 /backend/.php_cs.cache
-/backend/config/jwt/*.pem
 
 ### LOGS ###
 /logs
