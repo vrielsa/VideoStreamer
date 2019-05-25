@@ -1,0 +1,50 @@
+---
+- name: Add SSL package
+  apt:
+    pkg: openssl
+    state: latest
+    update_cache: true
+
+- name: Create SSL directory
+  file:
+    path: /etc/ssl
+    state: directory
+    owner: root
+    group: root
+
+- name: Create SSL directory structure
+  file:
+    path: /etc/ssl/{{ item }}
+    state: directory
+    owner: root
+    group: root
+  with_items:
+    - csr
+    - private
+
+- name: Generate private key
+  openssl_privatekey:
+    path: /etc/ssl/private/{{ domain }}.pem
+    type: RSA
+    passphrase:
+    cipher: auto
+
+- name: Generate CSR
+  openssl_csr:
+    path: /etc/ssl/csr/{{ domain }}.csr
+    privatekey_path: /etc/ssl/private/{{ domain }}.pem
+    privatekey_passphrase:
+    common_name: "{{ domain }}"
+
+- name: Generate self signed certificate
+  openssl_certificate:
+    path: /etc/ssl/{{ domain }}.crt
+    privatekey_path: /etc/ssl/private/{{ domain }}.pem
+    privatekey_passphrase:
+    csr_path: /etc/ssl/csr/{{ domain }}.csr
+    provider: selfsigned
+
+- name: Generate Diffie-Hellman parameters
+  openssl_dhparam:
+    path: /etc/ssl/dhparams.pem
+    size: 2048

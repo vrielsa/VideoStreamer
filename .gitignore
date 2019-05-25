@@ -1,23 +1,22 @@
-### DOCKER ###
-/docker/.env
+### DEV ###
+.idea
+.vagrant
 
 ### FE ###
 /frontend/node_modules/
 /frontend/yarn-error.log
 
 ### BE ###
-/backend/.env
-/backend/.env.local
-/backend/.env.local.php
-/backend/.env.*.local
-/backend/.env.test
-/backend/public/bundles/
-/backend/var/
-/backend/vendor/
-/backend/.phpunit
-/backend/phpunit.xml
-/backend/.php_cs
-/backend/.php_cs.cache
+.env
+.env.local
+.env.local.php
+.env.*.local
+.env.test
+public/bundles/
+var/
+vendor/
+.phpunit
+phpunit.xml
+.php_cs
+.php_cs.cache
 
-### LOGS ###
-/logs

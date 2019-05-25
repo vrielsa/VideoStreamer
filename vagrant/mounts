@@ -1,0 +1,52 @@
+require 'rbconfig'
+
+@os = RbConfig::CONFIG['host_os']
+
+Vagrant.configure(2) do |config|
+  case
+  when @os.downcase.include?('linux')
+    @os = 'linux'
+    config.vm.synced_folder ".", "/var/www/mediacasa.local/public", type: "nfs", mount_options: ['rw', 'vers=4', 'tcp', 'fsc']
+  when @os.downcase.include?('darwin')
+    @os = 'darwin'
+    config.vm.synced_folder ".", "/var/www/mediacasa.local/public", type: "nfs"
+  else
+    config.vm.synced_folder ".", "/var/www/mediacasa.local/public", type: "nfs"
+  end
+
+  # Repair Vagrant UID/GID to match our current user
+  uid = `id -u`.strip()
+  gid = `id -g`.strip()
+  config.vm.provision "shell", inline: <<-EOF
+
+  # Exit on first error
+  set -e
+
+  # Resolve our UID and GID
+  src_uid="$(id -u vagrant)"
+  target_uid="#{uid}"
+  src_gid="$(id -g vagrant)"
+  target_gid="#{gid}"
+
+  # If the user and group ids are aligned, then exit early
+  if test "$src_uid" = "$target_uid" && test "$src_gid" = "$target_gid"; then
+    exit 0
+  fi
+
+  # Otherwise, update our user id and group id
+  # DEV: We cannot use \`usermod\` as it complains about \`vagrant\` having a process
+  # Example: UID=100; GID=101
+  #  /etc/shadow: libuuid:x:100:101::/var/lib/libuuid:
+  #  /etc/group: libuuid:x:101:
+  # delete conflicting group
+  groupdel dialout
+  sed -E "s/(vagrant:.:)$src_uid:$src_gid:/\\1$target_uid:$target_gid:/g" --in-place /etc/passwd
+  sed -E "s/(vagrant:.:)$src_gid:/\\1$target_gid:/g" --in-place /etc/group
+
+  # Update all files to the proper user and group
+  chown -R $target_uid:$target_gid /home/vagrant
+  chown -R $target_uid:$target_gid /var/www
+EOF
+end
+
+

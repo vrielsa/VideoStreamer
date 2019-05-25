@@ -1,0 +1,7 @@
+---
+- name: Add System Packages
+  apt:
+    pkg:
+      - htop
+      - git
+    state: latest

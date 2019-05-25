@@ -1,0 +1,41 @@
+---
+- name: Add Required Packages
+  apt:
+    pkg:
+      - ca-certificates
+      - apt-transport-https
+
+- name: Add PHP Repo Key
+  apt_key:
+    url: https://packages.sury.org/php/apt.gpg
+
+- name: Add PHP Repo
+  apt_repository:
+    repo: 'deb https://packages.sury.org/php/ stretch main'
+
+- name: Install PHP-FPM
+  apt:
+    pkg:
+      - php7.3-fpm
+      - php7.3-common
+      - php7.3-iconv
+      - php7.3-json
+      - php7.3-xml
+      - php7.3-tokenizer
+    state: latest
+
+- name: Configure PHP-FPM pool
+  template:
+    src: www.conf.j2
+    dest: /etc/php/7.3/fpm/pool.d/www.conf
+    owner: root
+    group: root
+
+- name: Set PHP-FPM Socket Permission
+  notify:
+    - Start PHP
+  file:
+    dest: /var/run/php
+    owner: "{{ php_fpm_user }}"
+    group: "{{ php_fpm_group }}"
+    recurse: yes

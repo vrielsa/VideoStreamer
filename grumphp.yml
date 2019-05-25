@@ -1,6 +1,5 @@
 parameters:
   git_dir: .
-  bin_dir: backend/vendor/bin
   tasks:
     phpspec:
       format: dot
@@ -13,6 +12,6 @@ parameters:
     yamllint:
       parse_custom_tags: true
     phpcsfixer2:
-      cache_file: "backend/.php_cs.cache"
-      config: "backend/.php_cs.dist"
+      cache_file: ".php_cs.cache"
+      config: ".php_cs.dist"
       config_contains_finder: true

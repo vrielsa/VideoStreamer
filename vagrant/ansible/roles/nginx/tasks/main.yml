@@ -1,0 +1,60 @@
+---
+- name: Add Nginx apt key
+  apt_key:
+    url: https://nginx.org/keys/nginx_signing.key
+
+- name: Add Nginx Repository
+  apt_repository:
+    repo: "deb http://nginx.org/packages/mainline/{{ ansible_distribution|lower }}/ {{ ansible_distribution_release }} nginx"
+
+- name: Install Nginx
+  apt:
+    pkg: nginx
+    state: latest
+    update_cache: true
+  notify:
+    - Start Nginx
+
+- name: Create Nginx Config Directories
+  file:
+    path: /etc/nginx/{{ item }}
+    state: directory
+    owner: root
+    group: root
+  with_items:
+    - sites-available
+    - sites-enabled
+    - nginxconfig.io
+
+- name: Add Nginx Base Config
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+    owner: root
+    group: root
+
+- name: Add Nginx Site Config
+  template:
+    src: sites-available/{{ domain }}.j2
+    dest: /etc/nginx/sites-available/{{ domain }}
+    owner: root
+    group: root
+
+- name: Add Nginx Custom Config
+  copy:
+    src: "{{ item }}"
+    dest: /etc/nginx/nginxconfig.io
+    owner: root
+    group: root
+  with_items:
+    - general.conf
+    - php_fastcgi.conf
+    - security.conf
+
+- name: Enable Nginx Site Config
+  file:
+    src: /etc/nginx/sites-available/{{ domain }}
+    dest: /etc/nginx/sites-enabled/{{ domain }}
+    state: link
+  notify:
+    - Reload Nginx

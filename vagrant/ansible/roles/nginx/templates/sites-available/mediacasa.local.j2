@@ -1,0 +1,45 @@
+server {
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
+
+	server_name www.{{ domain }};
+	set $base /var/www/{{ domain }};
+	root $base/public/public;
+
+	# SSL
+	ssl_certificate /etc/ssl/{{ domain }}.crt;
+	ssl_certificate_key /etc/ssl/private/{{ domain }}.pem;
+
+	# security
+	include nginxconfig.io/security.conf;
+
+	# logging
+	access_log /var/log/nginx/{{ domain }}_access.log;
+	error_log /var/log/nginx/{{ domain }}_error.log warn;
+
+	# index.php
+	index index.php;
+
+	# index.php fallback
+	location / {
+		try_files $uri $uri/ /index.php?$query_string;
+	}
+
+	# handle .php
+	location ~ ^/index\.php(/|$) {
+		include nginxconfig.io/php_fastcgi.conf;
+	}
+
+	# additional config
+	include nginxconfig.io/general.conf;
+}
+
+# HTTP redirect
+server {
+	listen 80;
+	listen [::]:80;
+
+	server_name mediacasa.local;
+
+	return 301 https://www.{{ domain }}$request_uri;
+}
