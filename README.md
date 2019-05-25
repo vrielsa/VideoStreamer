@@ -7,4 +7,4 @@
 ### Setup
 * Cone the repo `git clone ...`
 * Start the vagrant box `vagrant up --provision`
-
+* Edit your host files and add `192.168.55.1 www.mediacasa.local`
