@@ -6,4 +6,4 @@
 - name: Start PHP
   service:
     name: php7.3-fpm
-    state: reloaded
+    state: started
