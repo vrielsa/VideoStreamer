@@ -53,7 +53,7 @@ class ExceptionTest extends TestCase
     }
 
     /**
-     * @expectedException Class Message 1234
+     * @expectedException Class Messages 1234
      */
     public function testFive()
     {
@@ -61,7 +61,7 @@ class ExceptionTest extends TestCase
 
     /**
      * @expectedException Class
-     * @expectedExceptionMessage Message
+     * @expectedExceptionMessage Messages
      * @expectedExceptionCode 1234
      */
     public function testSix()
@@ -70,7 +70,7 @@ class ExceptionTest extends TestCase
 
     /**
      * @expectedException Class
-     * @expectedExceptionMessage Message
+     * @expectedExceptionMessage Messages
      * @expectedExceptionCode ExceptionCode
      */
     public function testSeven()
@@ -79,7 +79,7 @@ class ExceptionTest extends TestCase
 
     /**
      * @expectedException Class
-     * @expectedExceptionMessage Message
+     * @expectedExceptionMessage Messages
      * @expectedExceptionCode 0
      */
     public function testEight()
@@ -112,7 +112,7 @@ class ExceptionTest extends TestCase
     /**
      * @expectedException Class
      * @expectedExceptionCode 1234
-     * @expectedExceptionMessage Message
+     * @expectedExceptionMessage Messages
      * @expectedExceptionMessageRegExp #regex#
      */
     public function testWithRegexMessage()
@@ -122,7 +122,7 @@ class ExceptionTest extends TestCase
     /**
      * @expectedException Class
      * @expectedExceptionCode 1234
-     * @expectedExceptionMessage Message
+     * @expectedExceptionMessage Messages
      * @expectedExceptionMessageRegExp ExceptionTest::ERROR_MESSAGE_REGEX
      */
     public function testWithRegexMessageFromClassConstant()
@@ -132,7 +132,7 @@ class ExceptionTest extends TestCase
     /**
      * @expectedException Class
      * @expectedExceptionCode 1234
-     * @expectedExceptionMessage Message
+     * @expectedExceptionMessage Messages
      * @expectedExceptionMessageRegExp ExceptionTest::UNKNOWN_MESSAGE_REGEX_CONSTANT
      */
     public function testWithUnknowRegexMessageFromClassConstant()

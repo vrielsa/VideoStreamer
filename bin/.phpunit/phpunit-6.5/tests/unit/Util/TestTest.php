@@ -44,22 +44,22 @@ class TestTest extends TestCase
         );
 
         $this->assertArraySubset(
-            ['class' => 'Class', 'code' => 1234, 'message' => 'Message'],
+            ['class' => 'Class', 'code' => 1234, 'message' => 'Messages'],
             Test::getExpectedException(\ExceptionTest::class, 'testFive')
         );
 
         $this->assertArraySubset(
-            ['class' => 'Class', 'code' => 1234, 'message' => 'Message'],
+            ['class' => 'Class', 'code' => 1234, 'message' => 'Messages'],
             Test::getExpectedException(\ExceptionTest::class, 'testSix')
         );
 
         $this->assertArraySubset(
-            ['class' => 'Class', 'code' => 'ExceptionCode', 'message' => 'Message'],
+            ['class' => 'Class', 'code' => 'ExceptionCode', 'message' => 'Messages'],
             Test::getExpectedException(\ExceptionTest::class, 'testSeven')
         );
 
         $this->assertArraySubset(
-            ['class' => 'Class', 'code' => 0, 'message' => 'Message'],
+            ['class' => 'Class', 'code' => 0, 'message' => 'Messages'],
             Test::getExpectedException(\ExceptionTest::class, 'testEight')
         );
 

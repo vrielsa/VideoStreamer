@@ -4,32 +4,42 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Controller;
 
-use App\Domain\Model\User;
-use Doctrine\ODM\MongoDB\DocumentManager;
+use App\Domain\Messages\User\CreateUserMessage;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\ParameterBag;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Messenger\MessageBusInterface;
 
+/**
+ * TESTING CONTROLLER - WILL BE REMOVED SOON.
+ *
+ * @deprecated DO NOT USE
+ */
 class DefaultController
 {
     /**
-     * @var DocumentManager
+     * @var MessageBusInterface
      */
-    private $documentManager;
+    private $messageBus;
 
-    public function __construct(DocumentManager $mongoDbManager)
+    public function __construct(MessageBusInterface $messageBus)
     {
-        $this->documentManager = $mongoDbManager;
+        $this->messageBus = $messageBus;
     }
 
-    public function index()
+    public function create(Request $request): Response
     {
-        $user = new User();
-        $user->setId(Uuid::uuid4()->toString());
-        $user->setUsername('sarah');
+        $data = new ParameterBag((array) json_decode($request->getContent(), true));
 
-        $this->documentManager->persist($user);
-        $this->documentManager->flush();
+        $this->messageBus->dispatch(
+            new CreateUserMessage(
+                Uuid::uuid4()->toString(),
+                $data->get('username', '')
+            )
+        );
 
-        return new JsonResponse(['hey']);
+        return new JsonResponse([], Response::HTTP_CREATED);
     }
 }

@@ -1,6 +1,0 @@
-api_test_index:
-  path: /
-  methods: [GET]
-  controller: App\Infrastructure\Controller\DefaultController::index
-  defaults:
-    _format: json

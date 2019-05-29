@@ -1,0 +1,9 @@
+services:
+  App\Domain\Messages\Handler\User\CreateUserMessageHandler:
+    public: true
+    arguments:
+      - '@doctrine_mongodb.odm.document_manager'
+      - '@event_dispatcher'
+    tags:
+      - messenger.message_handler
+      - messenger.bus.commands

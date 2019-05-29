@@ -56,7 +56,7 @@ class Exception extends Constraint
         if ($other !== null) {
             $message = '';
             if ($other instanceof Throwable) {
-                $message = '. Message was: "' . $other->getMessage() . '" at'
+                $message = '. Messages was: "' . $other->getMessage() . '" at'
                     . "\n" . Filter::getFilteredStacktrace($other);
             }
 

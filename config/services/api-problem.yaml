@@ -1,0 +1,4 @@
+services:
+  App\Infrastructure\ApiProblem\Transformer\MessageValidationTransformer:
+    tags:
+      - {name: phpro.api_problem.exception_transformer}

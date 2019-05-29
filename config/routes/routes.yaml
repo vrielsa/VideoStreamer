@@ -1,4 +1,4 @@
 api_test:
-    prefix: /test
-    resource: 'api/test.yaml'
+    prefix: /api/user
+    resource: 'api/user.yaml'
     trailing_slash_on_root: false

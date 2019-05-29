@@ -2,4 +2,4 @@ services:
   App\Infrastructure\Controller\DefaultController:
     public: true
     arguments:
-      - '@doctrine_mongodb.odm.document_manager'
+      - '@messenger.bus.commands'

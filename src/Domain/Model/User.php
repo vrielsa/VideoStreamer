@@ -16,35 +16,39 @@ class User
      */
     private $username;
 
-    /**
-     * @return string
-     */
+    private function __construct(string $id, string $username)
+    {
+        $this->id = $id;
+        $this->username = $username;
+    }
+
+    public static function create(
+        string $id,
+        string $userName
+    ): User {
+        return new self(
+            $id,
+            $userName
+        );
+    }
+
+    public static function load(
+        string $id,
+        string $username
+    ): User {
+        return new self(
+            $id,
+            $username
+        );
+    }
+
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @param string $id
-     */
-    public function setId(string $id): void
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return string
-     */
     public function getUsername(): string
     {
         return $this->username;
-    }
-
-    /**
-     * @param string $username
-     */
-    public function setUsername(string $username): void
-    {
-        $this->username = $username;
     }
 }

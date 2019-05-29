@@ -1465,7 +1465,7 @@ EOF
         } catch (ExpectationFailedException $e) {
             $this->assertEquals(
                 <<<EOF
-Failed asserting that exception of type "DummyException" matches expected exception "FoobarException". Message was: "Test" at
+Failed asserting that exception of type "DummyException" matches expected exception "FoobarException". Messages was: "Test" at
 $stackTrace.
 
 EOF
