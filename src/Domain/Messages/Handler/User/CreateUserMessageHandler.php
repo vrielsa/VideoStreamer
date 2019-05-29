@@ -8,7 +8,7 @@ use App\Domain\Event\User\UserCreatedEvent;
 use App\Domain\Messages\User\CreateUserMessage;
 use App\Domain\Model\User;
 use Doctrine\ODM\MongoDB\DocumentManager;
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 class CreateUserMessageHandler implements MessageHandlerInterface
@@ -19,13 +19,13 @@ class CreateUserMessageHandler implements MessageHandlerInterface
     private $documentManager;
 
     /**
-     * @var EventDispatcher
+     * @var EventDispatcherInterface
      */
     private $eventDispatcher;
 
     public function __construct(
         DocumentManager $documentManager,
-        EventDispatcher $eventDispatcher
+        EventDispatcherInterface $eventDispatcher
     ) {
         $this->documentManager = $documentManager;
         $this->eventDispatcher = $eventDispatcher;
