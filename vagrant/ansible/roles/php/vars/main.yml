@@ -1,3 +1,4 @@
 ---
 php_fpm_user: vagrant
 php_fpm_group: vagrant
+nginx_folder: /var/www/mediacasa.local/public

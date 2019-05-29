@@ -61,3 +61,9 @@
   file:
     path: /tmp/composer-installer.php
     state: absent
+
+- name: Install Composer Packages
+  become: vagrant
+  composer:
+    command: install
+    working_dir: "{{ nginx_folder }}"

@@ -1,0 +1,10 @@
+App\Domain\Model\User:
+  type: document
+  collection: users
+  fields:
+    id:
+      id: true
+      strategy: NONE
+      type: string
+    username:
+      type: string
