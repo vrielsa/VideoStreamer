@@ -1,0 +1,8 @@
+services:
+  App\Infrastructure\Fixtures\FixturesRunner:
+    arguments: [!tagged app.fixture]
+  App\Infrastructure\Fixtures\UserFixtures:
+    arguments:
+      - '@App\Infrastructure\MongoDB\Repository\UserRepository'
+    tags:
+      - { name: app.fixture }

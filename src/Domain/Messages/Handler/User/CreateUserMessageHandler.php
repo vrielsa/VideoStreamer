@@ -35,10 +35,11 @@ class CreateUserMessageHandler implements MessageHandlerInterface
     {
         $user = User::create(
             $message->getId(),
-            $message->getUsername()
+            $message->getUsername(),
+            $message->getEmail()
         );
 
         $this->userRepository->save($user);
-        $this->eventDispatcher->dispatch(UserCreatedEvent::class, new UserCreatedEvent($user));
+        $this->eventDispatcher->dispatch(new UserCreatedEvent($user));
     }
 }

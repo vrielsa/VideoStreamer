@@ -8,3 +8,9 @@ App\Domain\Model\User:
       type: string
     username:
       type: string
+    email:
+      type: string
+    password:
+      type: string
+    roles:
+      type: UserRole

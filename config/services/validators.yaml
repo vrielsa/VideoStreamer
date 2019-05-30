@@ -1,6 +1,6 @@
 services:
   App\Infrastructure\Validator\Constraints\CreateUserValidator:
     arguments:
-      - '@App\Infrastructure\Repository\UserRepository'
+      - '@App\Infrastructure\MongoDB\Repository\UserRepository'
     tags:
       - 'validator.constraint_validator'

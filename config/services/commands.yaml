@@ -1,0 +1,6 @@
+services:
+  App\Infrastructure\Console\Command\FixturesCommand:
+    arguments:
+      - '@App\Infrastructure\Fixtures\FixturesRunner'
+    tags:
+      - { name: 'console.command', command: 'mediacasa:fixtures' }

@@ -1,0 +1,2 @@
+services:
+  App\Infrastructure\MongoDB\Mapper\UserRoleMapper: ~

@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace App\Domain\Model;
 
-class User
+use App\Domain\Collection\UserRoleCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
+
+class User implements UserInterface
 {
     /**
      * @var string
@@ -16,30 +19,51 @@ class User
      */
     private $username;
 
-    private function __construct(string $id, string $username)
-    {
-        $this->id = $id;
-        $this->username = $username;
-    }
+    /**
+     * @var UserRoleCollection
+     */
+    private $roles;
+
+    /**
+     * @var string
+     */
+    private $email;
+
+    /**
+     * @var string
+     */
+    private $password;
 
     public static function create(
         string $id,
-        string $userName
+        string $username,
+        string $email
     ): User {
-        return new self(
-            $id,
-            $userName
-        );
+        $user = new self();
+        $user->id = $id;
+        $user->username = $username;
+        $user->email = $email;
+        $user->password = '';
+        $user->roles = new UserRoleCollection();
+
+        return $user;
     }
 
     public static function load(
         string $id,
-        string $username
+        string $username,
+        string $email,
+        string $password,
+        UserRoleCollection $userRoleCollection
     ): User {
-        return new self(
-            $id,
-            $username
-        );
+        $user = new self();
+        $user->id = $id;
+        $user->username = $username;
+        $user->email = $email;
+        $user->password = $password;
+        $user->roles = $userRoleCollection;
+
+        return $user;
     }
 
     public function getId(): string
@@ -50,5 +74,29 @@ class User
     public function getUsername(): string
     {
         return $this->username;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function getRoles(): array
+    {
+        return $this->roles->toArray();
+    }
+
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    public function eraseCredentials(): void
+    {
     }
 }

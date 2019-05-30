@@ -6,3 +6,5 @@ App\Domain\Messages\User\CreateUserMessage:
       - NotBlank: ~
     username:
       - NotBlank: ~
+    email:
+      - NotBlank: ~

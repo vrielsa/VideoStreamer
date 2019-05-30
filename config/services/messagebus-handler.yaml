@@ -2,7 +2,7 @@ services:
   App\Domain\Messages\Handler\User\CreateUserMessageHandler:
     public: true
     arguments:
-      - '@App\Infrastructure\Repository\UserRepository'
+      - '@App\Infrastructure\MongoDB\Repository\UserRepository'
       - '@event_dispatcher'
     tags:
       - messenger.message_handler

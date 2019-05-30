@@ -1,4 +1,4 @@
 services:
   App\Infrastructure\Security\UserProvider\UserProvider:
     arguments:
-      - '@App\Infrastructure\Repository\UserRepository'
+      - '@App\Infrastructure\MongoDB\Repository\UserRepository'

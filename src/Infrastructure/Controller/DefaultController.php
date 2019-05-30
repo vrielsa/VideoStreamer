@@ -36,7 +36,8 @@ class DefaultController
         $this->messageBus->dispatch(
             new CreateUserMessage(
                 Uuid::uuid4()->toString(),
-                $data->get('username', '')
+                $data->get('username', ''),
+                $data->get('email', '')
             )
         );
 

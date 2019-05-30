@@ -2,12 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Repository;
+namespace App\Infrastructure\MongoDB\Repository;
 
 use App\Domain\Exception\UserNotFoundException;
 use App\Domain\Model\User;
 use App\Domain\Repository\UserRepositoryInterface;
+use App\Infrastructure\MongoDB\Mapper\UserRoleMapper;
+use Doctrine\MongoDB\Collection;
 use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ODM\MongoDB\Types\Type;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -19,6 +22,7 @@ class UserRepository implements UserRepositoryInterface
     public function __construct(DocumentManager $documentManager)
     {
         $this->documentManager = $documentManager;
+        $this->addCustomMappingTypes();
     }
 
     public function save(User $user): void
@@ -50,5 +54,19 @@ class UserRepository implements UserRepositoryInterface
         }
 
         return $user;
+    }
+
+    public function getCollection(): Collection
+    {
+        return $this->documentManager->getDocumentCollection(User::class);
+    }
+
+    private function addCustomMappingTypes(): void
+    {
+        if (Type::hasType(UserRoleMapper::getName())) {
+            return;
+        }
+
+        Type::addType(UserRoleMapper::getName(), UserRoleMapper::class);
     }
 }

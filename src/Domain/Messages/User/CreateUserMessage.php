@@ -16,12 +16,19 @@ class CreateUserMessage
      */
     private $username;
 
+    /**
+     * @var string
+     */
+    private $email;
+
     public function __construct(
         string $id,
-        string $username
+        string $username,
+        string $email
     ) {
         $this->id = $id;
         $this->username = $username;
+        $this->email = $email;
     }
 
     public function getId(): string
@@ -32,5 +39,10 @@ class CreateUserMessage
     public function getUsername(): string
     {
         return $this->username;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
     }
 }
