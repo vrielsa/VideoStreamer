@@ -1,4 +1,6 @@
 App\Domain\Messages\User\CreateUserMessage:
+  constraints:
+    - App\Infrastructure\Validator\Constraints\CreateUser: ~
   properties:
     id:
       - NotBlank: ~

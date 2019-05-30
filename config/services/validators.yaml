@@ -1,0 +1,6 @@
+services:
+  App\Infrastructure\Validator\Constraints\CreateUserValidator:
+    arguments:
+      - '@doctrine_mongodb.odm.document_manager'
+    tags:
+      - 'validator.constraint_validator'
