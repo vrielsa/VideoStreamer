@@ -29,7 +29,7 @@ class DefaultController
         $this->messageBus = $messageBus;
     }
 
-    public function create(Request $request): Response
+    public function __invoke(Request $request): Response
     {
         $data = new ParameterBag((array) json_decode($request->getContent(), true));
 

@@ -1,6 +1,6 @@
 api_user_create:
   path: /
   methods: [POST]
-  controller: App\Infrastructure\Controller\DefaultController::create
+  controller: App\Infrastructure\Controller\DefaultController
   defaults:
     _format: json
