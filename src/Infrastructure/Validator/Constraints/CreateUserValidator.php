@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Validator\Constraints;
 
+use App\Domain\Exception\UserNotFoundException;
 use App\Domain\Messages\User\CreateUserMessage;
-use App\Domain\Model\User;
-use Doctrine\ODM\MongoDB\DocumentManager;
+use App\Domain\Repository\UserRepositoryInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -15,13 +15,13 @@ use Symfony\Component\Validator\Exception\UnexpectedValueException;
 class CreateUserValidator extends ConstraintValidator
 {
     /**
-     * @var DocumentManager
+     * @var UserRepositoryInterface
      */
-    private $documentManager;
+    private $userRepository;
 
-    public function __construct(DocumentManager $documentManager)
+    public function __construct(UserRepositoryInterface $userRepository)
     {
-        $this->documentManager = $documentManager;
+        $this->userRepository = $userRepository;
     }
 
     public function validate($value, Constraint $constraint): void
@@ -39,11 +39,9 @@ class CreateUserValidator extends ConstraintValidator
 
     private function validateUniqueUsername(string $userName, CreateUser $constraint): void
     {
-        $user = $this->documentManager->getRepository(User::class)->findOneBy(
-            ['username' => $userName]
-        );
-
-        if (!$user) {
+        try {
+            $this->userRepository->fetchByUserName($userName);
+        } catch (UserNotFoundException $notFoundException) {
             return;
         }
 

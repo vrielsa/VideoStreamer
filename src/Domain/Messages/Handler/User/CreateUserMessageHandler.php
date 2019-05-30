@@ -7,16 +7,16 @@ namespace App\Domain\Messages\Handler\User;
 use App\Domain\Event\User\UserCreatedEvent;
 use App\Domain\Messages\User\CreateUserMessage;
 use App\Domain\Model\User;
-use Doctrine\ODM\MongoDB\DocumentManager;
+use App\Domain\Repository\UserRepositoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 class CreateUserMessageHandler implements MessageHandlerInterface
 {
     /**
-     * @var DocumentManager
+     * @var UserRepositoryInterface
      */
-    private $documentManager;
+    private $userRepository;
 
     /**
      * @var EventDispatcherInterface
@@ -24,10 +24,10 @@ class CreateUserMessageHandler implements MessageHandlerInterface
     private $eventDispatcher;
 
     public function __construct(
-        DocumentManager $documentManager,
+        UserRepositoryInterface $userRepository,
         EventDispatcherInterface $eventDispatcher
     ) {
-        $this->documentManager = $documentManager;
+        $this->userRepository = $userRepository;
         $this->eventDispatcher = $eventDispatcher;
     }
 
@@ -38,8 +38,7 @@ class CreateUserMessageHandler implements MessageHandlerInterface
             $message->getUsername()
         );
 
-        $this->documentManager->persist($user);
-        $this->documentManager->flush($user);
+        $this->userRepository->save($user);
         $this->eventDispatcher->dispatch(UserCreatedEvent::class, new UserCreatedEvent($user));
     }
 }
