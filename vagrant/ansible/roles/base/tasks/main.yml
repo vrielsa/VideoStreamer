@@ -6,3 +6,12 @@
       - git
       - unzip
     state: latest
+
+- name: Add Python Package Manager
+  easy_install:
+    name: pip
+    state: latest
+
+- name: Add Required Python Packages
+  pip:
+    name: pyOpenSSL

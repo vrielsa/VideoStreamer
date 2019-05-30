@@ -67,3 +67,12 @@
   composer:
     command: install
     working_dir: "{{ nginx_folder }}"
+
+- name: Generate JWT private key
+  openssl_privatekey:
+    path: "{{ nginx_folder }}/config/jwt/private.pem"
+
+- name: Generate JWT public key
+  openssl_publickey:
+    path: "{{ nginx_folder }}/config/jwt/public.pem"
+    privatekey_path: "{{ nginx_folder }}/config/jwt/private.pem"

@@ -71,11 +71,13 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "4.2.*"
+            "require": "4.3.*"
         }
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.15",
         "phpro/grumphp": "^0.15.2",
+        "phpspec/phpspec": "^5.1",
         "symfony/phpunit-bridge": "4.2.*",
         "symfony/test-pack": "^1.0"
     }

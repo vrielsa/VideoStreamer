@@ -1,4 +1,7 @@
+api_logins:
+  resource: 'api/login.yaml'
+
 api_test:
-    prefix: /api/user
-    resource: 'api/user.yaml'
-    trailing_slash_on_root: false
+  prefix: /api/user
+  resource: 'api/user.yaml'
+  trailing_slash_on_root: false
