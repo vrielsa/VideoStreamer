@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\Event\User;
 
 use App\Domain\Event\DomainEvent;
-use App\Domain\Model\User;
+use App\Domain\Model\User\User;
 
 class UserCreatedEvent extends DomainEvent
 {

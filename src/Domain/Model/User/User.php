@@ -2,34 +2,48 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Model;
+namespace App\Domain\Model\User;
 
-use App\Domain\Collection\UserRoleCollection;
+use App\Domain\Collection\User\UserRoleCollection;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * @MongoDB\Document(collection="users")
+ */
 class User implements UserInterface
 {
     /**
+     * @MongoDB\Id(type="string", strategy="NONE")
+     *
      * @var string
      */
     private $id;
 
     /**
+     * @MongoDB\Field(type="string")
+     *
      * @var string
      */
     private $username;
 
     /**
+     * @MongoDB\Field(type="UserRole")
+     *
      * @var UserRoleCollection
      */
     private $roles;
 
     /**
+     * @MongoDB\Field(type="string")
+     *
      * @var string
      */
     private $email;
 
     /**
+     * @MongoDB\Field(type="string")
+     *
      * @var string
      */
     private $password;

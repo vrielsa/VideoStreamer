@@ -3,7 +3,7 @@ security:
     application:
       id: App\Infrastructure\Security\UserProvider\UserProvider
   encoders:
-    App\Domain\Model\User:
+    App\Domain\Model\User\User:
       algorithm: 'argon2i'
   role_hierarchy:
     ROLE_ADMIN: [ROLE_STANDARD_USER]

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Fixtures;
 
-use App\Domain\Collection\UserRoleCollection;
-use App\Domain\Model\User;
-use App\Domain\Model\UserRole;
+use App\Domain\Collection\User\UserRoleCollection;
+use App\Domain\Model\User\User;
+use App\Domain\Model\User\UserRole;
 use App\Domain\Repository\UserRepositoryInterface;
 
 class UserFixtures implements FixtureInterface

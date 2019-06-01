@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\MongoDB\Mapper;
 
-use App\Domain\Collection\UserRoleCollection;
-use App\Domain\Model\UserRole;
+use App\Domain\Collection\User\UserRoleCollection;
+use App\Domain\Model\User\UserRole;
 use Doctrine\ODM\MongoDB\MongoDBException;
 use Doctrine\ODM\MongoDB\Types\Type;
 

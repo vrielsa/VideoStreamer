@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Security\UserProvider;
 
 use App\Domain\Exception\UserNotFoundException;
-use App\Domain\Model\User;
+use App\Domain\Model\User\User;
 use App\Domain\Repository\UserRepositoryInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;

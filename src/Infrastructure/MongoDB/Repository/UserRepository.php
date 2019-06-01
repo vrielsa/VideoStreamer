@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\MongoDB\Repository;
 
 use App\Domain\Exception\UserNotFoundException;
-use App\Domain\Model\User;
+use App\Domain\Model\User\User;
 use App\Domain\Repository\UserRepositoryInterface;
 use App\Infrastructure\MongoDB\Mapper\UserRoleMapper;
 use Doctrine\MongoDB\Collection;

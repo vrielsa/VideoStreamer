@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Model;
+namespace App\Domain\Model\User;
 
 use App\Domain\Exception\InvalidRoleException;
 
@@ -18,7 +18,7 @@ class UserRole
 
     private function __construct(string $role)
     {
-        if (!\in_array($role, UserRole::getAvailableRoles(), true)) {
+        if (!\in_array($role, self::getAvailableRoles(), true)) {
             throw InvalidRoleException::withRole($role);
         }
 

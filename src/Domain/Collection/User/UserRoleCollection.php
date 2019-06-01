@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Collection;
+namespace App\Domain\Collection\User;
 
-use App\Domain\Model\UserRole;
+use App\Domain\Model\User\UserRole;
 use Countable;
 use Doctrine\MongoDB\ArrayIterator;
 use IteratorAggregate;

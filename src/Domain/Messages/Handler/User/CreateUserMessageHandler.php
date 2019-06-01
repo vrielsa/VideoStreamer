@@ -6,7 +6,7 @@ namespace App\Domain\Messages\Handler\User;
 
 use App\Domain\Event\User\UserCreatedEvent;
 use App\Domain\Messages\User\CreateUserMessage;
-use App\Domain\Model\User;
+use App\Domain\Model\User\User;
 use App\Domain\Repository\UserRepositoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
