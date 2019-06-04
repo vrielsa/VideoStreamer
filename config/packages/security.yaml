@@ -4,7 +4,7 @@ security:
       id: App\Infrastructure\Security\UserProvider\UserProvider
   encoders:
     App\Domain\Model\User\User:
-      algorithm: 'argon2i'
+      algorithm: 'sodium'
   role_hierarchy:
     ROLE_ADMIN: [ROLE_STANDARD_USER]
     ROLE_STANDARD_USER: []
