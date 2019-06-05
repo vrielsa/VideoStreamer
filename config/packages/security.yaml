@@ -35,6 +35,8 @@ security:
   access_control:
     # Public
     - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/graphql, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/graphiql, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
     # Admin paths
     - { path: ^/user, roles: ROLE_ADMIN }

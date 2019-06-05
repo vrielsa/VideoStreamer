@@ -8,7 +8,6 @@ use App\Domain\Exception\UserNotFoundException;
 use App\Domain\Model\User\User;
 use App\Domain\Repository\UserRepositoryInterface;
 use App\Infrastructure\MongoDB\Mapper\UserRoleMapper;
-use Doctrine\MongoDB\Collection;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\Types\Type;
 
@@ -56,9 +55,9 @@ class UserRepository implements UserRepositoryInterface
         return $user;
     }
 
-    public function getCollection(): Collection
+    public function drop(): void
     {
-        return $this->documentManager->getDocumentCollection(User::class);
+        $this->documentManager->getDocumentCollection(User::class)->drop();
     }
 
     private function addCustomMappingTypes(): void

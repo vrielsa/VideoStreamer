@@ -10,21 +10,22 @@
         "alcaeus/mongo-php-adapter": "^1.1",
         "doctrine/mongodb-odm-bundle": "^3.5",
         "lexik/jwt-authentication-bundle": "^2.6",
+        "overblog/graphql-bundle": "^0.12@dev",
         "phpro/api-problem-bundle": "^1.0",
         "ramsey/uuid": "^3.8",
         "symfony/amqp-pack": "^1.0",
-        "symfony/console": "4.2.*",
-        "symfony/dotenv": "4.2.*",
+        "symfony/console": "4.3.*",
+        "symfony/dotenv": "4.3.*",
         "symfony/flex": "^1.1",
-        "symfony/framework-bundle": "4.2.*",
-        "symfony/messenger": "4.2.*",
+        "symfony/framework-bundle": "4.3.*",
+        "symfony/messenger": "4.3.*",
         "symfony/monolog-bundle": "^3.3",
-        "symfony/options-resolver": "4.2.*",
-        "symfony/process": "4.2.*",
-        "symfony/security-bundle": "4.2.*",
-        "symfony/translation": "4.2.*",
-        "symfony/validator": "4.2.*",
-        "symfony/yaml": "4.2.*"
+        "symfony/options-resolver": "4.3.*",
+        "symfony/process": "4.3.*",
+        "symfony/security-bundle": "4.3.*",
+        "symfony/translation": "4.3.*",
+        "symfony/validator": "4.3.*",
+        "symfony/yaml": "4.3.*"
     },
     "config": {
         "preferred-install": {
@@ -76,9 +77,10 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.15",
+        "overblog/graphiql-bundle": "^0.1.2",
         "phpro/grumphp": "^0.15.2",
         "phpspec/phpspec": "^5.1",
-        "symfony/phpunit-bridge": "4.2.*",
+        "symfony/phpunit-bridge": "4.3.*",
         "symfony/test-pack": "^1.0"
     }
 }

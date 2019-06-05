@@ -15,5 +15,5 @@ interface UserRepositoryInterface
 
     public function fetchById(string $id): User;
 
-    public function getCollection(): Collection;
+    public function drop(): void;
 }
