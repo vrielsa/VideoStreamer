@@ -1,0 +1,10 @@
+UserInterface:
+  type: interface
+  config:
+    fields:
+      id:
+        type: "String!"
+      username:
+        type: "String!"
+      email:
+        type: "String!"

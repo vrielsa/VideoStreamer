@@ -24,21 +24,21 @@ class UserRepository implements UserRepositoryInterface
         $this->addCustomMappingTypes();
     }
 
-    public function save(User $user): void
+    public function create(User $user): void
     {
         $this->documentManager->persist($user);
         $this->documentManager->flush($user);
     }
 
-    public function fetchByUserName(string $userName): User
+    public function fetchByUsername(string $username): User
     {
         $user = $this->documentManager->getRepository(User::class)
             ->findOneBy(
-                ['username' => $userName]
+                ['username' => $username]
             );
 
         if (!$user) {
-            throw UserNotFoundException::withUserName($userName);
+            throw UserNotFoundException::withUsername($username);
         }
 
         return $user;
@@ -53,6 +53,23 @@ class UserRepository implements UserRepositoryInterface
         }
 
         return $user;
+    }
+
+    /**
+     * @return User[]
+     */
+    public function fetchAll(int $limit, int $offset): array
+    {
+        return array_map(function (User $user) {
+            return $user;
+        }, $this->documentManager
+            ->createQueryBuilder(User::class)
+            ->limit($limit)
+            ->skip($offset)
+            ->getQuery()
+            ->execute()
+            ->toArray()
+        );
     }
 
     public function drop(): void

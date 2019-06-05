@@ -1,0 +1,12 @@
+services:
+  App\Infrastructure\GraphQL\Resolver\User\UsernameResolver:
+    arguments:
+      - '@App\Infrastructure\MongoDB\Repository\UserRepository'
+    tags:
+      - { name: overblog_graphql.resolver, alias: 'userByUsername', method: 'resolve' }
+
+  App\Infrastructure\GraphQL\Resolver\User\ListResolver:
+    arguments:
+      - '@App\Infrastructure\MongoDB\Repository\UserRepository'
+    tags:
+      - { name: overblog_graphql.resolver, alias: 'listUsers', method: 'resolve' }

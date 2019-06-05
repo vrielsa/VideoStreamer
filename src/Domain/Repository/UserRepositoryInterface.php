@@ -8,11 +8,13 @@ use App\Domain\Model\User\User;
 
 interface UserRepositoryInterface
 {
-    public function save(User $user): void;
+    public function create(User $user): void;
 
-    public function fetchByUserName(string $userName): User;
+    public function fetchByUsername(string $userName): User;
 
     public function fetchById(string $id): User;
+
+    public function fetchAll(int $limit, int $offset): array;
 
     public function drop(): void;
 }

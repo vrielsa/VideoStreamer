@@ -13,7 +13,7 @@ class UserNotFoundException extends \RuntimeException
         );
     }
 
-    public static function withUserName(string $username): UserNotFoundException
+    public static function withUsername(string $username): UserNotFoundException
     {
         return new self(
             sprintf('The user with username: %s could not be found.', $username)

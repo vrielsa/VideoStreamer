@@ -1,0 +1,15 @@
+User:
+  type: object
+  config:
+    interfaces: [UserInterface]
+    isTypeOf: true
+    fields:
+      id:
+        type: "String!"
+        description: "An unique UUID for the user"
+      username:
+        type: "String!"
+        description: "An unique username for the user"
+      email:
+        type: "String!"
+        description: "The users email address"

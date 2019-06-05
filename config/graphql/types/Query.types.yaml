@@ -1,0 +1,21 @@
+Query:
+  type: object
+  config:
+    fields:
+      user:
+        description: "Get a user by its username"
+        type: "User"
+        args:
+          username: "String!"
+        resolve: "@=resolver('userByUsername', [args['username']])"
+      users:
+        description: "Gets all the users with pagination"
+        type: "[User]"
+        args:
+          limit:
+            type: "Int!"
+            description: "Limit the total Users return for a page"
+          offset:
+            type: "Int!"
+            description: "Offsets in the collection"
+        resolve: "@=resolver('listUsers', [args['limit'], args['offset']])"
