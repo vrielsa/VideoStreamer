@@ -60,16 +60,17 @@ class UserRepository implements UserRepositoryInterface
      */
     public function fetchAll(int $limit, int $offset): array
     {
-        return array_map(function (User $user) {
-            return $user;
-        }, $this->documentManager
+        $documents = $this->documentManager
             ->createQueryBuilder(User::class)
             ->limit($limit)
             ->skip($offset)
             ->getQuery()
             ->execute()
-            ->toArray()
-        );
+            ->toArray();
+
+        return array_map(function (User $user) {
+            return $user;
+        }, $documents);
     }
 
     public function drop(): void

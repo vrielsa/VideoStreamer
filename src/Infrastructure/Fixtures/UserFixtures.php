@@ -24,11 +24,10 @@ class UserFixtures implements FixtureInterface
 
     public function execute(): iterable
     {
-        $collection = $this->userRepository->getCollection();
-        $collection->drop();
+        $this->userRepository->drop();
 
         foreach ($this->generate() as $user) {
-            $this->userRepository->save($user);
+            $this->userRepository->create($user);
 
             yield $user;
         }
@@ -51,6 +50,62 @@ class UserFixtures implements FixtureInterface
             'd57b15ea-60dc-4712-9757-543c3e1fffb4',
             'misty',
             'misty@dispostable.com',
+            $password,
+            new UserRoleCollection(UserRole::standardUser())
+        );
+
+        yield User::load(
+            'd57b15ea-60dc-4712-9757-543c3e1fffb5',
+            'brock',
+            'brock@dispostable.com',
+            $password,
+            new UserRoleCollection(UserRole::standardUser())
+        );
+
+        yield User::load(
+            'd57b15ea-60dc-4712-9757-543c3e1fffb6',
+            'jessie',
+            'jessie@dispostable.com',
+            $password,
+            new UserRoleCollection(UserRole::standardUser())
+        );
+
+        yield User::load(
+            'd57b15ea-60dc-4712-9757-543c3e1fffb7',
+            'james',
+            'james@dispostable.com',
+            $password,
+            new UserRoleCollection(UserRole::standardUser())
+        );
+
+        yield User::load(
+            'd57b15ea-60dc-4712-9757-543c3e1fffb8',
+            'oak',
+            'oak@dispostable.com',
+            $password,
+            new UserRoleCollection(UserRole::standardUser())
+        );
+
+        yield User::load(
+            'd57b15ea-60dc-4712-9757-543c3e1fffb9',
+            'may',
+            'may@dispostable.com',
+            $password,
+            new UserRoleCollection(UserRole::standardUser())
+        );
+
+        yield User::load(
+            'd57b15ea-60dc-4712-9757-543c3e1fffc1',
+            'serena',
+            'misty@dispostable.com',
+            $password,
+            new UserRoleCollection(UserRole::standardUser())
+        );
+
+        yield User::load(
+            'd57b15ea-60dc-4712-9757-543c3e1fffc2',
+            'dawn',
+            'dawn@dispostable.com',
             $password,
             new UserRoleCollection(UserRole::standardUser())
         );
