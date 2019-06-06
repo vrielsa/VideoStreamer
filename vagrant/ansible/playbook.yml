@@ -5,5 +5,5 @@
     - base
     - certificates
     - nginx
-    - php
     - mongodb
+    - php
